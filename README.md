@@ -86,3 +86,7 @@ python testAPI.py -e http://localhost:7071/api/mnist-httptrigger
 This python script will take the images located in testimages and send it to the function API and show the label vs. the prediction. It can also be used to test published functions by passing
 the published endpoint. The output should look like the following:
 ![host_start](https://github.com/nkma1989/azurefunctions-keras-model/blob/master/readme_images/func_test.jpg)
+
+# Blob Trigger
+
+stuffff
