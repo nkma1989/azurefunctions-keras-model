@@ -34,7 +34,7 @@ def _main_(args):
         img=np.reshape(img,(1,28,28,1))
         test_sample = json.dumps({"image": img.tolist()})
         resp = requests.post(endpoint, test_sample, headers=headers)
-        print(img.shape)
+        print(f"input shape: {img.shape}")
         print(f"label {os.path.basename(image).split('.jpg')[0]}")
         print(f"prediction {resp.text}")
         print('-------------------------------------------------------------')

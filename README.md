@@ -67,3 +67,22 @@ It should look like following:
 ![host_start](https://github.com/nkma1989/azurefunctions-keras-model/blob/master/readme_images/host_start.jpg)
 
 The localhost endpoint of your function will be shown in the console as can be seen in the red box.
+
+
+# Testing the http-trigger
+
+Once the function is running open a new powershell or cmd window and navigate to the repository:
+```
+cd <path to local repository>
+```
+Activate the virtual environment:
+``` 
+venv\scripts\activate
+```
+Run the testAPI.py file using the parameter -e <Endpoint> to point to the function endpoint.
+```
+python testAPI.py -e http://localhost:7071/api/mnist-httptrigger
+```
+This python script will take the images located in testimages and send it to the function API and show the label vs. the prediction. It can also be used to test published functions by passing
+the published endpoint. The output should look like the following:
+![host_start](https://github.com/nkma1989/azurefunctions-keras-model/blob/master/readme_images/func_test.jpg)
