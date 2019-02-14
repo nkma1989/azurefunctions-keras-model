@@ -51,4 +51,4 @@ cd <\keras-mnist-model folder>
 func host start
 ```
 It should look like following:
-![host_start](.\readme_images\host_start.jpg)
+![host_start](https://github.com/nkma1989/azurefunctions-keras-model/blob/master/readme_images/host_start.jpg)
