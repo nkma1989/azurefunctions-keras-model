@@ -2,29 +2,36 @@ import logging
 from keras.models import model_from_json
 import pickle
 import azure.functions as func
-
+import numpy as np
 
 def main(req: func.HttpRequest) -> func.HttpResponse:
     logging.info('Python HTTP trigger function processed a request.')
+
     ##Loading the MNIST Model
     weights = pickle.load(open('.\modelfiles\Keras-Mnist_weights.pkl', 'rb'))
     json = pickle.load(open('.\modelfiles\Keras-Mnist_json.pkl', 'rb'))
     model = model_from_json(json)
     model.set_weights(weights)
-
-    name = req.params.get('name')
-    if not name:
-        try:
-            req_body = req.get_json()
-        except ValueError:
-            pass
-        else:
-            name = req_body.get('name')
-
-    if name:
-        return func.HttpResponse(f"Hello {name}!")
-    else:
+    #Checking for a JSON object in the request body
+    try: 
+        req_body = req.get_json()
+    except ValueError:
         return func.HttpResponse(
-             "Please pass a name on the query string or in the request body",
+             "Please pass an json object in the request body",
              status_code=400
         )
+    #Checking for an image in the request body
+    raw_data=req_body.get('image')
+    #Processing image
+    if raw_data:
+        data = np.array(raw_data,np.uint8)
+        prediction = model.predict(data)
+        #Maximum probability prediction
+        logging.info(np.argmax(prediction))
+    else:
+        return func.HttpResponse(
+             "Please pass an image in the request body",
+             status_code=400
+        )
+
+    return func.HttpResponse(f"{np.argmax(prediction)}")
