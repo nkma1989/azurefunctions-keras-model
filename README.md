@@ -15,14 +15,27 @@ For this tutorial i've used python 3.6.6 (https://www.python.org/downloads/relea
 - Install the Azure CLI version 2.x or later.
 	- https://docs.microsoft.com/en-us/cli/azure/install-azure-cli?view=azure-cli-latest
 	
-	
-	
+In order to host the functions locally you need a virtual environment. If you have a fresh installation of python you can install the library virtualenv to create virtual environments(make sure 
+to add python as environment variable):
+```
 pip install virtualenv
-
+```
+Open a powershell or cmd window and navigate to the cloned repository:
+```
+cd <path to local repository>
+```
+Create a virtual environment for your project:
+```
 virtualenv venv --python=<path to python 3.6>
-
-pip install -r requirements.txt
-
+```
+Activate the virtual environment:
+```
+venv\scripts\activate
+```
+Now install the dependencies in order to host the functions locally:
+```
+pip install -r venv_requirements.txt
+```
 # Creating project resources
 
 initially we are creating a function project using the azure functions core tools
@@ -52,3 +65,5 @@ func host start
 ```
 It should look like following:
 ![host_start](https://github.com/nkma1989/azurefunctions-keras-model/blob/master/readme_images/host_start.jpg)
+
+The localhost endpoint of your function will be shown in the console as can be seen in the red box.
