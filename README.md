@@ -1,5 +1,7 @@
 # azurefunction-keras-model
 
+I've pre-trained a model to predict the Handwritten digits based on the MNIST dataset(http://yann.lecun.com/exdb/mnist/). This tutorial will show you how to user Azure Functions to deploy the 
+model. This tutorial will show you how to create an http trigger but also how to automatically trigger on uploading images into blob store.
 stuff
 blob trigger
 can also easily be converted to a http trigger.

@@ -25,8 +25,11 @@ def _main_(args):
     
     #API definition
     endpoint=args.endpoint
-    headers = {'Content-Type':'application/json'}
     
+    print(f"Using endpoint: {args.endpoint}")
+    print('-------------------------------------------------------------')
+    
+    headers = {'Content-Type':'application/json'}
     paths=glob.glob(r'.\testimages\*.jpg')
     for image in paths:
         print(image)
