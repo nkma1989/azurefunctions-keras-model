@@ -51,4 +51,4 @@ cd <\keras-mnist-model folder>
 func host start
 ```
 It should look like following:
-![host_start](readme_images\host_start.jpg)
+![host_start](.\readme_images\host_start.jpg)
