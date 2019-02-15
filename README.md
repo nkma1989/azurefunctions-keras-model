@@ -1,9 +1,8 @@
 # Azurefunctions-keras-model
 
-I've pre-trained a model to predict the Handwritten digits based on the MNIST dataset(http://yann.lecun.com/exdb/mnist/). It will not be shown how to train the model as it is not the scope of this 
-tutorial. This tutorial will show you how to user Azure Functions to deploy the model. This tutorial will show you how to create an http trigger but also how to automatically 
-trigger on uploading images into blob store.
-This tutorial is only tested on a windows machine.
+I've pre-trained a deep learning model to predict the Handwritten digits based on the MNIST dataset(http://yann.lecun.com/exdb/mnist/). It will not be shown how to train the model as it is not the scope of this 
+tutorial. This tutorial will show you how to use Azure Functions to deploy the model. This tutorial will show you how to create an http trigger but also how to automatically 
+trigger on uploading images into azure blob store.
 stuff
 blob trigger
 can also easily be converted to a http trigger.
@@ -14,6 +13,8 @@ can also easily be converted to a http trigger.
 Before you get started a working python installation is required. This 
 For this tutorial i've used python 3.6.6 (https://www.python.org/downloads/release/python-366/)
 
+- Requires access to a working Azure Subscription. You can get a free trial here:
+	- https://azure.microsoft.com/en-us/offers/ms-azr-0044p/
 - Install Azure Functions Core Tools version 2.2.70 or later (requires .NET Core 2.x SDK and Node.js).
 	- https://docs.microsoft.com/en-us/azure/azure-functions/functions-run-local#v2
 - Install the Azure CLI version 2.x or later.
@@ -74,7 +75,7 @@ It should look like following:
 The localhost endpoint of your function will be shown in the console as can be seen in the red box.
 
 
-# Testing the http-trigger
+# Testing the HTTP-trigger
 
 Once the function is running open a new powershell or cmd window and navigate to the repository:
 ```
@@ -114,10 +115,19 @@ Next we will set up a storage account.
 ```
 az storage account create --name mnistfunctionstorage --location westeurope --resource-group keras-mnist-tutorial --sku Standard_LRS
 ```
-Now open the azure portal and click on your deployed storage account and create 2 blob containers as shown in the following image(used by the blob trigger function):
+We need to create 2 seperate container used by the blob trigger function.
+```
+az storage container create -n images --connection-string "<connection-string to storage account>"
+az storage container create -n images-processed --connection-string "<connection-string to storage account>"
+```
+It should look like this when you look at your blob storage account:
 
 ![host_start](https://github.com/nkma1989/azurefunctions-keras-model/blob/master/readme_images/storage_setup.jpg)
 
+Finally we want to create a table for dumping the data, instead of using the connection string you can also use an account key and account name:
+```
+az storage table create -n test --account-key <account key> --account-name mnistfunctionstorage
+```
 Next step is creating the Azure Function App.
 ```
 az functionapp create --resource-group keras-mnist-tutorial --os-type Linux --consumption-plan-location westeurope  --runtime python --name keras-mnist-functionapp --storage-account  mnistfunctionstorage
@@ -126,7 +136,6 @@ We need to set a few app settings before publishing(You might need a subscriptio
 ```
 az functionapp config appsettings set --name keras-mnist-functionapp --resource-group keras-mnist-tutorial --settings ModelWeightsPath=./modelfiles/Keras-Mnist_weights.pkl ModelJSONPath=./modelfiles/Keras-Mnist_json.pkl
 ```
-
 
 Now we are ready to publish our functionapps(you need to be in the keras-mnist-model folder). The --build-native-deps will compiles the dependencies in a docker container and deploy the functionapp as such. 
 ```
@@ -144,6 +153,13 @@ You can test this endpoint using the python script testAPI.py
 ```
 python testAPI.py -e https://keras-mnist-functionapp.azurewebsites.net/api/mnist-httptrigger?code=FcRtK6oRY3ookPegxwv04ba2HDapTuOgwCg6lfPsdplVC9miouRTuw==
 ```
+You can test the blob trigger by uploading images from testimages folder into the images container in blob storage. The result can be seen in the images-processed folder og the table using Azure table explorer:
+
+![host_start](https://github.com/nkma1989/azurefunctions-keras-model/blob/master/readme_images/blobtrigger_result.jpg)
+
+![host_start](https://github.com/nkma1989/azurefunctions-keras-model/blob/master/readme_images/table_store.jpg)
+
+
 To clean up resources you can delete the resource group by running the following command:
 ```
 az group delete --name keras-mnist-tutorial

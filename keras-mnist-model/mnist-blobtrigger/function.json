@@ -5,8 +5,15 @@
       "name": "myblob",
       "type": "blobTrigger",
       "direction": "in",
-      "path": "samples-workitems/{name}",
-      "connection": ""
+      "path": "images/{name}.{blobextension}",
+      "connection": "AzureWebJobsStorage"
+    },
+    {
+      "name": "outputblob",
+      "type": "blob",
+      "path": "images-processed/{name}_Processed.{blobextension}",
+      "connection": "AzureWebJobsStorage",
+      "direction": "out"
     }
   ]
 }
