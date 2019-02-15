@@ -126,7 +126,7 @@ It should look like this when you look at your blob storage account:
 
 Finally we want to create a table for dumping the data, instead of using the connection string you can also use an account key and account name:
 ```
-az storage table create -n test --account-key <account key> --account-name mnistfunctionstorage
+az storage table create -n imagedata --account-key <account key> --account-name mnistfunctionstorage
 ```
 Next step is creating the Azure Function App.
 ```
@@ -156,6 +156,8 @@ python testAPI.py -e https://keras-mnist-functionapp.azurewebsites.net/api/mnist
 You can test the blob trigger by uploading images from testimages folder into the images container in blob storage. The result can be seen in the images-processed folder og the table using Azure table explorer:
 
 ![host_start](https://github.com/nkma1989/azurefunctions-keras-model/blob/master/readme_images/blobtrigger_result.jpg)
+
+Table store result:
 
 ![host_start](https://github.com/nkma1989/azurefunctions-keras-model/blob/master/readme_images/table_store.jpg)
 
