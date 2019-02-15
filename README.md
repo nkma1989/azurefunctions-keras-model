@@ -46,17 +46,15 @@ pip install -r venv_requirements.txt
 
 # HTTP Trigger Function
  
- Initially we are creating a function that triggers through an http request. First thing you need to do is open a 
- powershell or cmd window. and activate the virtual environment then navigate to the \keras-mnist-model folder.
+To run the HTTP trigger function locally you need to open a powershell or cmd window and activate the virtual environment then navigate to the \keras-mnist-model folder.
 ``` 
+cd <Path to repository>
 venv\scripts\activate
+cd .\keras-mnist-model\ 
 ```
-
-Now we are ready to create our first function. For this we again use the Azure functions core tool. 
 
 In order to run the function use the following command:
 ``` 
-cd <Path to repository>\keras-mnist-model\ 
 func host start
 ```
 It should look like following:
