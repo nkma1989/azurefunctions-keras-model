@@ -1,11 +1,11 @@
 # Azurefunctions-keras-model
 
-I've pre-trained a deep learning model to predict the Handwritten digits based on the MNIST dataset(http://yann.lecun.com/exdb/mnist/). It will not be shown how to train the model as it is not the scope of this 
-tutorial. This tutorial will show you how to use Azure Functions to deploy the model. This tutorial will show you how to create an http trigger but also how to automatically 
-trigger on uploading images into azure blob store.
-stuff
-blob trigger
-can also easily be converted to a http trigger.
+Hello.
+This tutorial will show you how to use Azure Functions to deploy deep learning models and store processed data. I've pre-trained a deep learning model to predict the Handwritten digits based on the MNIST dataset(http://yann.lecun.com/exdb/mnist/). The model will take an image of a handwritten digit as seen here:
+
+![host_start](https://github.com/nkma1989/azurefunctions-keras-model/blob/master/testimages/8.jpg)
+
+and predict what digit is written. How to train the model is not the scope of this tutorial. Two types of functions triggers will be covered, an HTTP trigger and a blob storage trigger. Let's dig right into it.
 
 
 # Prerequisites
@@ -43,18 +43,8 @@ Now install the dependencies in order to host the functions locally:
 ```
 pip install -r venv_requirements.txt
 ```
-# Creating project resources
 
-initially we are creating a function project using the azure functions core tools
-```
-func init keras-mnist-model
-
-select python as the worker runtime
-```
- This directory is the equivalent of a function app in Azure and can contain multiple functions that share local and
- hosting configurations.
- 
-# HTTP trigger function
+# HTTP Trigger Function
  
  Initially we are creating a function that triggers through an http request. First thing you need to do is open a 
  powershell or cmd window. and activate the virtual environment then navigate to the \keras-mnist-model folder.
@@ -94,7 +84,7 @@ the published endpoint. The output should look like the following:
 
 ![host_start](https://github.com/nkma1989/azurefunctions-keras-model/blob/master/readme_images/func_test.jpg)
 
-# Blob Trigger
+# Blob Trigger Function
 To run the blob trigger function you need to open a powershell or cmd window. and activate the virtual environment then navigate to the \keras-mnist-model folder.
 ``` 
 venv\scripts\activate
