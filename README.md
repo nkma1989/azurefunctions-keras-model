@@ -95,9 +95,27 @@ the published endpoint. The output should look like the following:
 ![host_start](https://github.com/nkma1989/azurefunctions-keras-model/blob/master/readme_images/func_test.jpg)
 
 # Blob Trigger
-for this to work, you need a storage account on azure. look at the section Publishing to Azure to see how that can be done.
-stuffff
-change the storage account under local.settings.json
+To run the blob trigger function you need to open a powershell or cmd window. and activate the virtual environment then navigate to the \keras-mnist-model folder.
+``` 
+venv\scripts\activate
+```
+This function type is conncted to a blob storage and is listening for new files uploaded. You need to configure the local.settings.json file to listen to the correct storage account.
+You need to have a deployed storage account(see how to create this in the Publishing to Azure section). Change the "AzureWebJobsStorage" setting to your connection string, as seen:
+
+![host_start](https://github.com/nkma1989/azurefunctions-keras-model/blob/master/readme_images/conec_string.jpg)
+
+In order to run the function use the following command:
+``` 
+cd <Path to repository>\keras-mnist-model\ 
+func host start
+```
+
+# Testing the blob trigger
+To test the blob trigger upload images from the testimages folder into the "images" container in blob storage. The output from the console should look like this:
+
+![host_start](https://github.com/nkma1989/azurefunctions-keras-model/blob/master/readme_images/blob_trigger_output.jpg)
+
+The result can be seen in the images-processed folder and the table, using Azure table explorer or the Azure portal. As shown in the Publishing to Azure section.
 
 
 
@@ -153,7 +171,7 @@ You can test this endpoint using the python script testAPI.py
 ```
 python testAPI.py -e <Function endpoint>
 ```
-You can test the blob trigger by uploading images from testimages folder into the images container in blob storage. The result can be seen in the images-processed folder and the table, using Azure table explorer or the Azure portal:
+You can test the blob trigger by uploading images from testimages folder into the "images" container in blob storage. The result can be seen in the images-processed folder and the table, using Azure table explorer or the Azure portal:
 
 ![host_start](https://github.com/nkma1989/azurefunctions-keras-model/blob/master/readme_images/blobtrigger_result.jpg)
 

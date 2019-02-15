@@ -2,7 +2,7 @@
   "IsEncrypted": false,
   "Values": {
     "FUNCTIONS_WORKER_RUNTIME": "python",
-    "AzureWebJobsStorage": "DefaultEndpointsProtocol=https;AccountName=mnistfunctionstorage;AccountKey=pu0FTPb8QZFP54BtmfIBJ80wBPTg1T/+FWH/yLg2DePzJcncxWSwoUR6Y+RIlWAi2OeFWfbXt2jSw2Hx9PnCWw==;EndpointSuffix=core.windows.net",
+    "AzureWebJobsStorage": "DefaultEndpointsProtocol=https;AccountName=mnistfunctionstorage;AccountKey=q4Axb3Cfm5J+UEiilFsyFARtkwmp3+WlZa1eJ7uw+vUl2PFnDy2lYE0sGaGIHs3fURQ383jBLYfj2cxmXGMegQ==;EndpointSuffix=core.windows.net",
     "ModelWeightsPath": ".\\modelfiles\\Keras-Mnist_weights.pkl",
     "ModelJSONPath": ".\\modelfiles\\Keras-Mnist_json.pkl"
   }
