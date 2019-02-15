@@ -103,7 +103,7 @@ To test the blob trigger upload images from the testimages folder into the "imag
 
 ![host_start](https://github.com/nkma1989/azurefunctions-keras-model/blob/master/readme_images/blob_trigger_output.jpg)
 
-The result can be seen in the images-processed folder and the table, using Azure table explorer or the Azure portal. As shown in the Publishing to Azure section.
+The result can be seen in the images-processed container and the table, using Azure table explorer or the Azure portal. As shown in the Publishing to Azure section.
 
 
 
