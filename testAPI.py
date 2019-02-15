@@ -34,7 +34,7 @@ def _main_(args):
     for image in paths:
         print(image)
         img=cv2.imread(image,cv2.IMREAD_GRAYSCALE)
-        img=np.reshape(img,(1,28,28,1))
+        img=np.reshape(img,(1,img.shape[0],img.shape[1],1))
         test_sample = json.dumps({"image": img.tolist()})
         resp = requests.post(endpoint, test_sample, headers=headers)
         print(f"input shape: {img.shape}")

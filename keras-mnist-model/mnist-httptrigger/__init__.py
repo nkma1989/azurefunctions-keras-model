@@ -3,13 +3,13 @@ from keras.models import model_from_json
 import pickle
 import azure.functions as func
 import numpy as np
+import os
 
 def main(req: func.HttpRequest) -> func.HttpResponse:
     logging.info('Python HTTP trigger function processed a request.')
-
     ##Loading the MNIST Model
-    weights = pickle.load(open('.\modelfiles\Keras-Mnist_weights.pkl', 'rb'))
-    json = pickle.load(open('.\modelfiles\Keras-Mnist_json.pkl', 'rb'))
+    weights = pickle.load(open(os.environ['ModelWeightsPath'], 'rb'))
+    json = pickle.load(open(os.environ['ModelJSONPath'], 'rb'))
     model = model_from_json(json)
     model.set_weights(weights)
     #Checking for a JSON object in the request body

@@ -2,6 +2,8 @@
   "IsEncrypted": false,
   "Values": {
     "FUNCTIONS_WORKER_RUNTIME": "python",
-    "AzureWebJobsStorage": "{AzureWebJobsStorage}"
+    "AzureWebJobsStorage": "{AzureWebJobsStorage}",
+    "ModelWeightsPath": ".\\modelfiles\\Keras-Mnist_weights.pkl",
+    "ModelJSONPath": ".\\modelfiles\\Keras-Mnist_json.pkl"
   }
 }
