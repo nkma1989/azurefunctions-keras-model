@@ -57,7 +57,7 @@ In order to run the function use the following command:
 func host start
 ```
 It should look like following:
-![host_start](https://github.com/nkma1989/azurefunctions-keras-model/blob/master/readme_images/host_start.jpg)
+![host_start](https://github.com/nkma1989/azurefunctions-keras-model/blob/master/doc/host_start.jpg)
 
 The localhost endpoint of your function will be shown in the console as can be seen in the red box.
 
@@ -79,7 +79,7 @@ python testAPI.py -e <Local endpoint>
 This python script will take the images located in testimages and send it to the function API and show the label vs. the prediction. It can also be used to test published functions by passing
 the published endpoint. The output should look like the following:
 
-![host_start](https://github.com/nkma1989/azurefunctions-keras-model/blob/master/readme_images/func_test.jpg)
+![host_start](https://github.com/nkma1989/azurefunctions-keras-model/blob/master/doc/func_test.jpg)
 
 # Blob Trigger Function
 To run the blob trigger function you need to open a powershell or cmd window and activate the virtual environment then navigate to the \keras-mnist-model folder.
@@ -89,7 +89,7 @@ venv\scripts\activate
 This function type is conncted to a blob storage and is listening for new files uploaded. You need to configure the local.settings.json file to listen to the correct storage account.
 You need to have a deployed storage account and create 2 containers called "images" and "images-processed" and a table called "imagedata" on that storage account(see how to create this in the Publishing to Azure section). Change the "AzureWebJobsStorage" setting to your connection string, as seen:
 
-![host_start](https://github.com/nkma1989/azurefunctions-keras-model/blob/master/readme_images/conec_string.jpg)
+![host_start](https://github.com/nkma1989/azurefunctions-keras-model/blob/master/doc/conec_string.jpg)
 
 In order to run the function use the following command.
 ``` 
@@ -100,7 +100,7 @@ func host start
 # Testing the blob trigger
 To test the blob trigger upload images from the testimages folder into the "images" container in blob storage. The output from the console should look like this:
 
-![host_start](https://github.com/nkma1989/azurefunctions-keras-model/blob/master/readme_images/blob_trigger_output.jpg)
+![host_start](https://github.com/nkma1989/azurefunctions-keras-model/blob/master/doc/blob_trigger_output.jpg)
 
 The result can be seen in the images-processed container and the table, using Azure table explorer or the Azure portal. As shown in the Publishing to Azure section.
 
@@ -126,7 +126,7 @@ az storage container create -n images-processed --connection-string "<connection
 ```
 It should look like this when you look at your blob storage account:
 
-![host_start](https://github.com/nkma1989/azurefunctions-keras-model/blob/master/readme_images/storage_setup.jpg)
+![host_start](https://github.com/nkma1989/azurefunctions-keras-model/blob/master/doc/storage_setup.jpg)
 
 Finally we want to create a table for dumping the data.
 ```
@@ -147,11 +147,11 @@ func azure functionapp publish keras-mnist-functionapp --build-native-deps
 ```
 This step might take a while and the console output should look like this:
 
-![host_start](https://github.com/nkma1989/azurefunctions-keras-model/blob/master/readme_images/deploy_func.jpg)
+![host_start](https://github.com/nkma1989/azurefunctions-keras-model/blob/master/doc/deploy_func.jpg)
 
 When finished the output should look as follows. In the red box the endpoint for the published function can be seen:
 
-![host_start](https://github.com/nkma1989/azurefunctions-keras-model/blob/master/readme_images/func_endpoint.jpg)
+![host_start](https://github.com/nkma1989/azurefunctions-keras-model/blob/master/doc/func_endpoint.jpg)
 
 You can test this endpoint using the python script testAPI.py
 ```
@@ -159,11 +159,11 @@ python testAPI.py -e <Function endpoint>
 ```
 You can test the blob trigger by uploading images from testimages folder into the "images" container in blob storage. The result can be seen in the "images-processed" container and the "imagedata" table, using Azure table explorer or the Azure portal.
 
-![host_start](https://github.com/nkma1989/azurefunctions-keras-model/blob/master/readme_images/blobtrigger_result.jpg)
+![host_start](https://github.com/nkma1989/azurefunctions-keras-model/blob/master/doc/blobtrigger_result.jpg)
 
 Table store result:
 
-![host_start](https://github.com/nkma1989/azurefunctions-keras-model/blob/master/readme_images/table_store.jpg)
+![host_start](https://github.com/nkma1989/azurefunctions-keras-model/blob/master/doc/table_store.jpg)
 
 
 To clean up resources you can delete the resource group by running the following command:
