@@ -76,7 +76,7 @@ Run the testAPI.py file using the parameter -e <Endpoint> to point to the functi
 ```
 python testAPI.py -e <Local endpoint>
 ```
-This python script will take the images located in testimages and send it to the function API and show the label vs. the prediction. It can also be used to test published functions by passing
+This python script will load the images located in testimages and send an HTTP request to the API endpoint specified as a parameter -e. It can also be used to test published functions by passing
 the published endpoint. The output should look like the following:
 
 ![host_start](https://github.com/nkma1989/azurefunctions-keras-model/blob/master/doc/func_test.jpg)
