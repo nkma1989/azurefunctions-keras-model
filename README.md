@@ -141,7 +141,7 @@ We need to set a few app settings before publishing(You might need a subscriptio
 az functionapp config appsettings set --name keras-mnist-functionapp --resource-group keras-mnist-tutorial --settings ModelWeightsPath=./modelfiles/Keras-Mnist_weights.pkl ModelJSONPath=./modelfiles/Keras-Mnist_json.pkl
 ```
 
-Now we are ready to publish our functionapps(you need to be in the keras-mnist-model folder). The --build-native-deps will compiles the dependencies in a docker container and deploy the functionapp as such. 
+Now we are ready to publish our functionapps(you need to be in the keras-mnist-model folder). The --build-native-deps compiles the dependencies in a docker container and deploys the functionapp as such. 
 ```
 func azure functionapp publish keras-mnist-functionapp --build-native-deps
 ```
