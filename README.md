@@ -64,11 +64,11 @@ The localhost endpoint of your function will be shown in the console as can be s
 
 # Testing the HTTP-trigger
 
-Once the function is running open a new powershell or cmd window and navigate to the repository:
+Once the function is running open a new powershell or cmd window and navigate to the repository.
 ```
 cd <path to local repository>
 ```
-Activate the virtual environment:
+Activate the virtual environment.
 ``` 
 venv\scripts\activate
 ```
@@ -91,7 +91,7 @@ You need to have a deployed storage account and create 2 containers called "imag
 
 ![host_start](https://github.com/nkma1989/azurefunctions-keras-model/blob/master/readme_images/conec_string.jpg)
 
-In order to run the function use the following command:
+In order to run the function use the following command.
 ``` 
 cd <Path to repository>\keras-mnist-model\ 
 func host start
@@ -128,7 +128,7 @@ It should look like this when you look at your blob storage account:
 
 ![host_start](https://github.com/nkma1989/azurefunctions-keras-model/blob/master/readme_images/storage_setup.jpg)
 
-Finally we want to create a table for dumping the data:
+Finally we want to create a table for dumping the data.
 ```
 az storage table create -n imagedata --connection-string "<connection-string to storage account>"
 ```
@@ -136,7 +136,7 @@ Next step is creating the Azure Function App.
 ```
 az functionapp create --resource-group keras-mnist-tutorial --os-type Linux --consumption-plan-location westeurope  --runtime python --name keras-mnist-functionapp --storage-account  mnistfunctionstorage
 ```
-We need to set a few app settings before publishing(You might need a subscription ID input for this function if you have multiple subscriptions on your Azure user):
+We need to set a few app settings before publishing(You might need a subscription ID input for this function if you have multiple subscriptions on your Azure user).
 ```
 az functionapp config appsettings set --name keras-mnist-functionapp --resource-group keras-mnist-tutorial --settings ModelWeightsPath=./modelfiles/Keras-Mnist_weights.pkl ModelJSONPath=./modelfiles/Keras-Mnist_json.pkl
 ```
@@ -157,7 +157,7 @@ You can test this endpoint using the python script testAPI.py
 ```
 python testAPI.py -e <Function endpoint>
 ```
-You can test the blob trigger by uploading images from testimages folder into the "images" container in blob storage. The result can be seen in the "images-processed" container and the "imagedata" table, using Azure table explorer or the Azure portal:
+You can test the blob trigger by uploading images from testimages folder into the "images" container in blob storage. The result can be seen in the "images-processed" container and the "imagedata" table, using Azure table explorer or the Azure portal.
 
 ![host_start](https://github.com/nkma1989/azurefunctions-keras-model/blob/master/readme_images/blobtrigger_result.jpg)
 
