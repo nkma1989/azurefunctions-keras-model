@@ -10,8 +10,7 @@ and predict what digit is written. How to train the model is not the scope of th
 
 # Prerequisites
 
-Before you get started a working python installation is required. This 
-For this tutorial i've used python 3.6.6 (https://www.python.org/downloads/release/python-366/)
+Before you get started a working python installation is required. For this tutorial i've used python 3.6.6 (https://www.python.org/downloads/release/python-366/)
 
 - Requires access to a working Azure Subscription. You can get a free trial here:
 	- https://azure.microsoft.com/en-us/offers/ms-azr-0044p/
@@ -83,12 +82,12 @@ the published endpoint. The output should look like the following:
 ![host_start](https://github.com/nkma1989/azurefunctions-keras-model/blob/master/readme_images/func_test.jpg)
 
 # Blob Trigger Function
-To run the blob trigger function you need to open a powershell or cmd window. and activate the virtual environment then navigate to the \keras-mnist-model folder.
+To run the blob trigger function you need to open a powershell or cmd window and activate the virtual environment then navigate to the \keras-mnist-model folder.
 ``` 
 venv\scripts\activate
 ```
 This function type is conncted to a blob storage and is listening for new files uploaded. You need to configure the local.settings.json file to listen to the correct storage account.
-You need to have a deployed storage account(see how to create this in the Publishing to Azure section). Change the "AzureWebJobsStorage" setting to your connection string, as seen:
+You need to have a deployed storage account and create 2 containers called "images" and "images-processed" and a table called "imagedata" on that storage account(see how to create this in the Publishing to Azure section). Change the "AzureWebJobsStorage" setting to your connection string, as seen:
 
 ![host_start](https://github.com/nkma1989/azurefunctions-keras-model/blob/master/readme_images/conec_string.jpg)
 
@@ -104,7 +103,6 @@ To test the blob trigger upload images from the testimages folder into the "imag
 ![host_start](https://github.com/nkma1989/azurefunctions-keras-model/blob/master/readme_images/blob_trigger_output.jpg)
 
 The result can be seen in the images-processed container and the table, using Azure table explorer or the Azure portal. As shown in the Publishing to Azure section.
-
 
 
 # Publishing to Azure
@@ -159,7 +157,7 @@ You can test this endpoint using the python script testAPI.py
 ```
 python testAPI.py -e <Function endpoint>
 ```
-You can test the blob trigger by uploading images from testimages folder into the "images" container in blob storage. The result can be seen in the images-processed folder and the table, using Azure table explorer or the Azure portal:
+You can test the blob trigger by uploading images from testimages folder into the "images" container in blob storage. The result can be seen in the "images-processed" container and the "imagedata" table, using Azure table explorer or the Azure portal:
 
 ![host_start](https://github.com/nkma1989/azurefunctions-keras-model/blob/master/readme_images/blobtrigger_result.jpg)
 
