@@ -11,6 +11,7 @@ and predict what digit is written. How to train the model is not the scope of th
 # Prerequisites
 
 Before you get started a working python installation is required. For this tutorial i've used python 3.6.6 (https://www.python.org/downloads/release/python-366/)
+OBS! Some dependencies like tensorflow requires a 64-bit python version. So make sure you have that!
 
 - Requires access to a working Azure Subscription. You can get a free trial here:
 	- https://azure.microsoft.com/en-us/offers/ms-azr-0044p/
